@@ -1,4 +1,4 @@
-# Maibot-personality_switch_plugi
+# Maibot-personality_switch_plugin
 # 插件功能总结
 1. 核心突破：解决单一maibot局限，实现“单bot多人格”效果，无需额外开启多个maibot
 2. 人格交互：支持多个人格聊天、互动；默认保持当前人格，输入其他人格名/命令可切换
