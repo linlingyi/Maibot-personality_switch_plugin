@@ -2,9 +2,7 @@
   "name": "personality_switch_plugin",
   "version": "9.0.0",
   "description": "终极完整版人格切换插件，支持8个人格（名字/名字/名字等）、人格热插拔、多场景适配、智能化交互（意图+情绪识别）、多模态回复（图片+语音）、第三方工具集成、离线模式等全功能",
-  "author": "自定义（可修改）",
-  "id": "linglingyi.personality_switch_plugin",
-  "repositoryUrl": "https://github.com/linlingyi/Maibot-personality_switch_plugin",
+  "author": "linlingyi",
   "min_maibot_version": "0.12.0",
   "max_maibot_version": "0.12.0",
   "contact": "无（可补充邮箱/联系方式）",
@@ -85,3 +83,4 @@
   "id": "自定义（可修改）.personality_switch_plugin"
 
 }
+
