@@ -1,0 +1,19 @@
+# requirements.txt
+# 必需依赖
+apscheduler>=3.10.4
+toml>=0.10.2
+Flask>=2.3.3
+requests>=2.31.0
+
+# 可选依赖（根据功能需要）
+pandas>=2.1.4
+matplotlib>=3.8.2
+pymysql>=1.1.0
+redis>=5.0.1
+textblob>=0.17.1
+pyttsx3>=2.90
+icalendar>=5.0.10
+pillow>=10.1.0
+llama-cpp-python>=0.2.0
+openai>=1.0.0
+zhipuai>=2.0.0

@@ -1,0 +1,84 @@
+{
+  "name": "personality_switch_plugin",
+  "version": "9.0.0",
+  "description": "终极完整版人格切换插件，支持8个人格（名字/名字/名字等）、人格热插拔、多场景适配、智能化交互（意图+情绪识别）、多模态回复（图片+语音）、第三方工具集成、离线模式等全功能",
+  "author": "自定义（可修改）",
+  "min_maibot_version": "0.12.0",
+  "max_maibot_version": "0.12.0",
+  "contact": "无（可补充邮箱/联系方式）",
+  "plugin_type": "chat",
+  "supported_platforms": [
+    "all"
+  ],
+  "entry_file": "plugin.py",
+  "main_class": "PersonalitySwitchPlugin",
+  "start_mode": "daemon",
+  "dependencies": {
+    "python": ">=3.8",
+    "packages": [
+      "openai>=1.0.0",
+      "zhipuai>=2.0.0",
+      "toml>=0.10.2",
+      "APScheduler>=3.10.4",
+      "Flask>=2.3.3",
+      "pandas>=2.1.4",
+      "matplotlib>=3.8.2",
+      "pymysql>=1.1.0",
+      "redis>=5.0.1",
+      "textblob>=0.17.1",
+      "pyttsx3>=2.90",
+      "icalendar>=5.0.10",
+      "requests>=2.31.0",
+      "pillow>=10.1.0",
+      "llama-cpp-python>=0.2.0"
+    ]
+  },
+  "config": {
+    "config_file": "config.toml",
+    "config_desc": "插件核心配置文件，包含人格配置、LLM模型配置、缓存配置、工具配置、多模态配置等所有功能开关",
+    "required_fields": [
+      "personalities",
+      "llm.default_model_type",
+      "database.enable",
+      "hot_swap.enable",
+      "scene.enable"
+    ]
+  },
+  "permissions": [
+    "message.read",
+    "message.send",
+    "file.read",
+    "file.write",
+    "network.request",
+    "database.access",
+    "web.server"
+  ],
+  "features": [
+    "8人格预设（支持自定义新增/导入/导出）",
+    "人格热插拔（无需重启，TOML/JSON格式）",
+    "多场景适配（工作/亲友/游戏等，场景专属配置）",
+    "智能化交互（用户意图识别、情绪强度识别、人格自主学习）",
+    "多模态回复（文字+图片生成+语音合成）",
+    "第三方工具集成（天气查询、待办清单、日历联动）",
+    "智能缓存+LLM节流（降低API成本）",
+    "离线模式（无网络可用基础功能）",
+    "人格动态关系+成长系统（关系升级、能力解锁）",
+    "细粒度权限管理（管理员/普通用户/游客角色）",
+    "可视化配置工具（Web端图形化操作）",
+    "一键备份/迁移（本地+云备份）",
+    "监控面板（活跃度统计、数据备份）"
+  ],
+  "update_log": {
+    "9.0.0": "整合所有优化功能，新增8个人格完整配置，补充全量核心功能",
+    "8.0.0": "新增人格热插拔+多场景深度适配",
+    "7.0.0": "核心人格切换+LLM智能回复+跨人格记忆互通"
+  },
+  "notes": [
+    "1. 首次使用需先安装依赖：pip install -r requirements.txt（可从config.toml中提取依赖列表生成）",
+    "2. 本地LLM模型（如Llama-3-8B）需单独下载并配置路径",
+    "3. 图片生成需本地部署Stable Diffusion（默认端口7860）",
+    "4. 天气/日历等工具需配置对应API密钥",
+    "5. 监控面板访问：http://localhost:5000，可视化配置工具访问：http://localhost:5001"
+  ],
+  "id": "自定义（可修改）.personality_switch_plugin"
+}

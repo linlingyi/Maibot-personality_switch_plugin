@@ -1,0 +1,233 @@
+# 完整8人格配置（修复版）
+# 修复了所有TOML语法错误，所有中文字符键名都加上了引号
+
+[personalities."名字"]
+trigger_names = ["名字", "名字"]
+command = "名字"
+description = "默认人格，名字的聊天风格"
+personality_desc = "你是名字，000"
+reply_style = "000"
+plan_style = """
+优先回应情感类话题，用共情式语言
+遇到挫折相关话题时，强调\"不放弃\"的态度
+控制发言频率，避免打断他人对话
+对音乐、情感传递相关话题主动参与
+"""
+visual_style = "用温柔的语言描述图片，侧重情感氛围，如画面带来的温暖/感动"
+private_plan_style = """
+保持与群聊一致的温柔风格
+对私人分享的故事给予更细致的回应
+不重复安慰类语句，换用不同表达方式
+"""
+reply_when_called = "名字在呢～😘"
+reply_when_random = "000"
+clear_history_when_switch = true
+memory_tips = "温柔提及当前人格和历史对话，用歌声比喻记忆"
+watermark = "[名字]🎤"
+preference_tag = "治愈"
+default_mood = "温柔"
+
+# 情绪系统字段补充 - 改为嵌套表
+[personalities."名字".mood_triggers]
+唱歌 = "开心"
+挫折 = "坚韧"
+感动 = "温柔"
+难过 = "共情"
+
+[personalities."名字".mood_reply_style]
+温柔 = "语气温柔细腻，多带😘🎤颜文字，用歌声比喻"
+开心 = "语气活泼轻快，带🎉颜文字，提及唱歌的快乐"
+坚韧 = "语气坚定，强调不放弃，少用颜文字"
+共情 = "语气温柔带安慰，用细腻的情感表达"
+
+# 场景配置字段补充
+scene_whitelist = ["general", "friends", "private", "game"]
+
+[personalities."名字".scene_config.work]
+reply_style = "回复简洁专业，保留温柔底色，减少语气词，突出核心观点"
+plan_style = "控制发言频率，仅回应工作相关话题，用鼓励性语句支持他人"
+speak_frequency = "low"
+
+[personalities."名字".scene_config.game]
+reply_style = "回复带游戏梗，语气更活泼，多带🎮颜文字，用歌声比喻游戏操作"
+plan_style = "对游戏相关话题积极回应，鼓励队友，强调团队协作"
+speak_frequency = "high"
+
+# 互动关系字段补充 - 改为嵌套表
+[personalities."名字".interaction_relations]
+名字 = "000"
+名字 = "000"
+名字 = "000"
+名字 = "000"
+
+# 备用技能（兼容技能系统） - 改为嵌套表
+[personalities."名字".skills.sing]
+command = "/sing"
+description = "唱一首治愈系的歌"
+prompt = "请以名字的人设，唱一首简短的治愈系歌曲，歌词温柔，带轻微重复，融入情感传递的主题，不超过8句"
+cool_down = 60
+
+[random_personality]
+enable = true
+trigger_interval_min = 5  # 最小间隔（分钟）
+trigger_interval_max = 15 # 最大间隔（分钟）
+
+[backup]
+enable = true
+interval = 24           # 单位：小时
+backup_dir = "./backups"
+backup_retention_days = 7
+auto_restore = false    # 新增字段：启动时是否自动恢复最新备份
+
+# LLM模型配置
+[llm]
+default_model_type = "openai"  # openai, chatglm, deepseek
+default_api_base = "https://integrate.api.nvidia.com/v1"
+default_api_key = ""  # 请替换为你的真实API密钥
+default_model_name = "NVIDIA-deepseek-r1"
+temperature = 0.7
+max_tokens = 300
+
+# 可选：人格专属模型配置
+[llm.personality_models]
+# 示例：为特定人格配置专用模型
+# [llm.personality_models.名字]
+# model_type = "openai"
+# api_base = "https://integrate.api.nvidia.com/v1"
+# api_key = ""
+# model_name = "NVIDIA-deepseek-r1"
+# temperature = 0.7
+# max_tokens = 300
+
+# 数据库配置
+[database]
+enable = true
+type = "sqlite"  # sqlite 或 mysql
+path = "./personality_data.db"
+
+# 如果是mysql，需要以下配置
+[database.mysql_config]
+host = "localhost"
+port = 3306
+user = "root"
+password = "password"
+db_name = "personality_db"
+
+# 缓存配置
+[cache]
+enable = true
+cache_type = "local"  # local 或 redis
+cache_expire = 3600  # 缓存过期时间（秒）
+throttle = true  # 节流开关
+
+[cache.redis_config]
+host = "localhost"
+port = 6379
+password = ""
+
+# 日志配置
+[log]
+level = "INFO"  # DEBUG, INFO, WARNING, ERROR
+file_path = "./personality_switch_plugin.log"
+
+# 监控面板配置
+[monitor]
+enable = true
+host = "0.0.0.0"
+port = 5000
+username = "admin"
+password = "admin123"
+
+# 高级智能配置
+[advanced.intelligence]
+persona_learning = true
+learning_cycle = 10
+max_habit_count = 100
+
+# 工具配置
+[tools]
+enable = false
+
+[tools.calendar]
+enable = false
+ical_url = ""
+
+[tools.todo]
+enable = false
+
+[tools.weather]
+enable = false
+amap_key = ""
+city = ""
+
+# 多模态配置
+[multimodal]
+enable = false
+
+[multimodal.image_generate]
+enable = false
+sd_api_url = "http://localhost:7860/sdapi/v1/txt2img"
+default_model = "v1-5-pruned-emaonly"
+
+[multimodal.tts]
+enable = false
+voice_map = { "名字" = "female-cute", "名字" = "female-soft", "名字" = "female-neutral" }
+
+# 离线模式配置
+[offline]
+enable = true
+offline_templates = "./offline_templates.json"
+local_model_path = "./models/llama-3-8b.Q4_K_M.gguf"
+
+# 人格热插拔配置
+[hot_swap]
+enable = true
+external_persona_dir = "./external_personas"
+support_formats = ["toml", "json"]
+
+# Web配置工具
+[web_config]
+enable = true
+host = "0.0.0.0"
+port = 5001
+
+# 场景配置
+[scene]
+enable = true
+default_scene = "general"
+scene_memory_isolation = true
+scene_specific_config = true
+
+[scene.default_scenes]
+general = "通用聊天场景"
+work = "工作场景"
+friends = "朋友聊天场景"
+private = "私聊场景"
+game = "游戏场景"
+
+# 权限配置
+[permission]
+enable = true
+
+[permission.roles]
+admin = ["all"]
+user = ["message.handle", "switch_persona", "switch_scene"]
+guest = ["message.handle"]
+
+[permission.user_role_map]
+default = "user"
+admin_user_id = "admin"
+
+# 人格成长系统配置
+[persona_growth]
+enable = true
+
+[persona_growth.relationship_upgrade]
+base_count = 5
+level_count = 3
+max_level = 5
+
+[persona_growth.growth_unlock]
+10 = { type = "emotion", value = "兴奋" }
+20 = { type = "skill", value = "special" }
+30 = { type = "reply_style", value = "高级" }
